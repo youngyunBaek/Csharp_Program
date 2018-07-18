@@ -17,41 +17,31 @@ namespace RESTClient
             InitializeComponent();
         }
 
-
-        #region UI Evnet Handlers
+        #region UI Event Handlers
 
         private void cmdGO_Click(object sender, EventArgs e)
         {
+            debugOutput("This is some output that I can use to test stuff");
             RestClient rClient = new RestClient();
-            rClient.endPoint = txtRequesttURI.Text;
+            rClient.endPoint = txtRequestURI.Text;
 
-            debugOutput("REST Client Created");
+            debugOutput("Rest Client Created");
 
             string strResponse = string.Empty;
-
             strResponse = rClient.makeRequest();
 
             debugOutput(strResponse);
         }
 
-        private void txtResponse_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         #endregion
 
-        #region debug Function
-
-        private void  debugOutput(string strDebugText)
+        #region debug Functions
+        private void debugOutput(string strDebugText)
         {
             try
             {
                 System.Diagnostics.Debug.Write(strDebugText + Environment.NewLine);
-                // 이전 txt를 유지하고 txt를 추가
-                //txtResponse.Text = txtResponse.Text + strDebugText + Environment.NewLine;
-                // 매번 txt 칸을 갱신
-                txtResponse.Text = strDebugText;
+                txtResponse.Text = txtResponse.Text + strDebugText + Environment.NewLine;
                 txtResponse.SelectionStart = txtResponse.TextLength;
                 txtResponse.ScrollToCaret();
             }
@@ -60,14 +50,6 @@ namespace RESTClient
                 System.Diagnostics.Debug.Write(ex.Message, ToString() + Environment.NewLine);
             }
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         #endregion
-
-
     }
 }
