@@ -54,6 +54,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="jsonPersonArray.cs" />
     <Compile Include="jsonPersonComplex.cs" />
     <Compile Include="jsonPersonSimple.cs" />
     <Compile Include="Program.cs" />
