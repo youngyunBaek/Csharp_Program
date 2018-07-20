@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using canlibCLSNET;
 
-namespace CANTest
+namespace CanTest
 {
     class Program
     {
-        static void DisplayError(Canlib.canStatus status, string routineName)
+        static void DisplayError(Canlib.canStatus status, String routineName)
         {
-            string errText = "";
+            String errText = "";
             if (status != Canlib.canStatus.canOK)
             {
                 Canlib.canGetErrorText(status, out errText);
@@ -22,15 +22,15 @@ namespace CANTest
                 Console.WriteLine("{0} succeeded", routineName);
         }
 
-        static void DisplayMessage(int id, int dlc, byte[] data, int flags, long time)
+        static void DispalyMessage(int id, int dlc, byte[] data, int flags, long time)
         {
             if ((flags & Canlib.canMSGERR_OVERRUN) > 0)
-                Console.WriteLine("**** RECEIVE OVERRUN ****");
+                Console.WriteLine("****  RECEIVE OVERRUN ****");
             if ((flags & Canlib.canMSG_ERROR_FRAME) == Canlib.canMSG_ERROR_FRAME)
                 Console.WriteLine("ErrorFrame                                       {0}", time);
             else
             {
-                Console.Write("{0:x8}", id);
+                Console.Write("{0:x8} ", id);
                 if ((flags & Canlib.canMSG_EXT) == Canlib.canMSG_EXT)
                     Console.Write("X");
                 else
@@ -47,17 +47,17 @@ namespace CANTest
                     Console.Write("W");
                 else
                     Console.Write(" ");
-                Console.Write("   {0:x1} ", dlc);
+                Console.Write("   {0xx1} ", dlc);
                 for (int i = 0; i < 8; i++)
                 {
                     if (i < dlc)
                         Console.Write("  {0:x2}", data[i]);
                     else
-                        Console.Write("     ");
+                        Console.Write("    ");
                 }
-                Console.WriteLine("      {0}", time);
+                Console.WriteLine("     {0}", time);
             }
-        }  // end of function DisplayMessage
+        } // end of function DisplayMessage
 
         static void Main(string[] args)
         {
@@ -77,7 +77,7 @@ namespace CANTest
             DisplayError(status, "canBusOn");
 
             Console.WriteLine("Press Escape Key to exit");
-            Console.WriteLine("   ID     Flag DLC   Data                          Timestamp");
+            Console.WriteLine("   ID    Flag DLC  Data                             Timestamp");
 
             bool notFinished = true;
 
@@ -94,7 +94,7 @@ namespace CANTest
 
                 if (status == Canlib.canStatus.canOK)
                 {
-                    DisplayMessage(id, dlc, data, flags, time);
+                    DispalyMessage(id, dlc, data, flags, time);
                 }
                 else if (status != Canlib.canStatus.canERR_NOMSG)
                 {
@@ -112,14 +112,14 @@ namespace CANTest
                     if (cki.Key == ConsoleKey.Escape)
                         notFinished = false;
                 }
-                // end of while not finished loop
-            }
+            } // end if while not finished loop
 
             status = Canlib.canBusOff(chanHandle);
             DisplayError(status, "canBusOff");
 
             status = Canlib.canClose(chanHandle);
             DisplayError(status, "canClose");
+
         } // end of function Main
     } // end of class Program
-} // end of namespace CANTest
+} // end of namespace CanTest
