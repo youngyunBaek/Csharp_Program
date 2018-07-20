@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONParser", "JSONParser\JS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RESTClient", "RESTClient\RESTClient.csproj", "{1CF6C7E8-82F9-4586-8D03-443AEA538481}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanelChange1", "PanelChange1\PanelChange1.csproj", "{1537C0BB-B6D0-4A87-8828-0988AF9A420F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaumMap", "DaumMap\DaumMap.csproj", "{551881F2-CCF3-4040-A900-651E048AFEBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{1CF6C7E8-82F9-4586-8D03-443AEA538481}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CF6C7E8-82F9-4586-8D03-443AEA538481}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CF6C7E8-82F9-4586-8D03-443AEA538481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1537C0BB-B6D0-4A87-8828-0988AF9A420F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1537C0BB-B6D0-4A87-8828-0988AF9A420F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1537C0BB-B6D0-4A87-8828-0988AF9A420F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1537C0BB-B6D0-4A87-8828-0988AF9A420F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{551881F2-CCF3-4040-A900-651E048AFEBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{551881F2-CCF3-4040-A900-651E048AFEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{551881F2-CCF3-4040-A900-651E048AFEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{551881F2-CCF3-4040-A900-651E048AFEBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
