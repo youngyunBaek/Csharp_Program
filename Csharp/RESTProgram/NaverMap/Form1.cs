@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DaumMap
+namespace NaverMap
 {
     public partial class Form1 : Form
     {
@@ -17,17 +17,18 @@ namespace DaumMap
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
-                string url = "http://map.daum.net/link/to/18577297";
+                string url = Environment.CurrentDirectory + "\\naverMapAPI.html";
+                Console.WriteLine();
                 webBrowser1.Navigate(url);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }            
+            }
         }
     }
 }
