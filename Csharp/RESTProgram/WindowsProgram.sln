@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaumMap", "DaumMap\DaumMap.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaverMap", "NaverMap\NaverMap.csproj", "{1DCAE209-D1A4-4033-8805-FF1A7AE12A26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCPServer", "TCPServer\TCPServer.csproj", "{2DF7D904-B808-49A6-958E-9B65CE2087D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCPClient", "TCPClient\TCPClient.csproj", "{F75F2DB7-6C11-4CBD-8007-B103D7F62770}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{1DCAE209-D1A4-4033-8805-FF1A7AE12A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DCAE209-D1A4-4033-8805-FF1A7AE12A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DCAE209-D1A4-4033-8805-FF1A7AE12A26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DF7D904-B808-49A6-958E-9B65CE2087D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DF7D904-B808-49A6-958E-9B65CE2087D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DF7D904-B808-49A6-958E-9B65CE2087D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DF7D904-B808-49A6-958E-9B65CE2087D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F75F2DB7-6C11-4CBD-8007-B103D7F62770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F75F2DB7-6C11-4CBD-8007-B103D7F62770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F75F2DB7-6C11-4CBD-8007-B103D7F62770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F75F2DB7-6C11-4CBD-8007-B103D7F62770}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
