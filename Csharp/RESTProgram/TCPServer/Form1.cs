@@ -42,6 +42,7 @@ namespace TCPServer
         {
             SetLogMsg("Socket Loading....");
             m_server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //m_server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Udp);
             IPEndPoint iep = new IPEndPoint(IPAddress.Any, 9090);
             SetLogMsg("Socket Bind...");
             m_server.Bind(iep);

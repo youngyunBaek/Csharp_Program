@@ -40,6 +40,7 @@ namespace TCPClient
 
             SetLogMsg(strIP.ToString() + ":" + strPORT.ToString() + " 접속중...\n");
             m_Client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //m_Client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Udp);
             //IPE생성
             IPEndPoint iep = new IPEndPoint(IPAddress.Parse(strIP), iPORT);
             m_Client.BeginConnect(iep, new AsyncCallback(Connected), m_Client);
