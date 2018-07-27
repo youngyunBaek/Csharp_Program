@@ -11,12 +11,28 @@
     <div id="map" style="width:100%;height:400px;"></div>
 
     <script>
-        var mapOptions = {
-            center: new naver.maps.LatLng(37.3595704, 127.105399),
-            zoom: 10
-        };
 
-        var map = new naver.maps.Map('map', mapOptions);
+        this.var1 = 37.3595704;
+        this.var2 = 127.105399;
+
+        var map = new naver.maps.Map('map', {
+            center: new naver.maps.LatLng(this.var1, this.var2),
+            zoom: 10
+        });
+
+        var marker = new naver.maps.Marker({
+            position: new naver.maps.LatLng(this.var1, this.var2),
+            map: map
+        });        
+
+        function CallScript(var1, var2) {
+            marker.setMap(null);            
+            marker = new naver.maps.Marker({
+                position: new naver.maps.LatLng(var1, var2),
+                map: map
+            });            
+            //marker.SetPosition(var1, var2);
+        }
     </script>
 </body>
 </html>

@@ -30,5 +30,18 @@ namespace NaverMap
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                webBrowser1.Document.InvokeScript("CallScript", new object[] { textBox1.Text, textBox2.Text });
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
     }
 }
