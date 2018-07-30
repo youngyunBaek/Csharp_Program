@@ -10,7 +10,7 @@ namespace FUP
         public long FILESIZE;
         public byte[] FILENAME;
 
-        public BodyRequest() {}
+        public BodyRequest() { }
         public BodyRequest(byte[] bytes)
         {
             FILESIZE = BitConverter.ToInt64(bytes, 0);
@@ -70,10 +70,12 @@ namespace FUP
             DATA = new byte[bytes.Length];
             bytes.CopyTo(DATA, 0);
         }
+
         public byte[] GetBytes()
         {
             return DATA;
         }
+
         public int GetSize()
         {
             return DATA.Length;

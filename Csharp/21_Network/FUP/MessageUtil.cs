@@ -15,7 +15,7 @@ namespace FUP
             int sizeToRead = 16;
             byte[] hBuffer = new byte[sizeToRead];
 
-            while(sizeToRead > 0)
+            while (sizeToRead > 0)
             {
                 byte[] buffer = new byte[sizeToRead];
                 int recv = reader.Read(buffer, 0, sizeToRead);
@@ -33,7 +33,7 @@ namespace FUP
             byte[] bBuffer = new byte[header.BODYLEN];
             sizeToRead = (int)header.BODYLEN;
 
-            while(sizeToRead > 0)
+            while (sizeToRead > 0)
             {
                 byte[] buffer = new byte[sizeToRead];
                 int recv = reader.Read(buffer, 0, sizeToRead);
@@ -63,7 +63,7 @@ namespace FUP
                 default:
                     throw new Exception(
                         String.Format(
-                            "Unknown MSGTYPE : {0}" + header.MSGTYPE));
+                        "Unknown MSGTYPE : {0}" + header.MSGTYPE));
             }
 
             return new Message() { Header = header, Body = body };

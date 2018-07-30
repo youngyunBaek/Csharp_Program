@@ -15,10 +15,9 @@ namespace FileReceiver
             if (args.Length < 1)
             {
                 Console.WriteLine("사용법 : {0} <Directory>",
-                    Process.GetCurrentProcess().ProcessName);
+                   Process.GetCurrentProcess().ProcessName);
                 return;
             }
-
             uint msgId = 0;
 
             string dir = args[0];
@@ -27,22 +26,21 @@ namespace FileReceiver
 
             const int bindPort = 5425;
             TcpListener server = null;
-
             try
             {
                 IPEndPoint localAddress =
-                    new IPEndPoint(0, bindPort);
+                   new IPEndPoint(0, bindPort);
 
                 server = new TcpListener(localAddress);
                 server.Start();
 
-                Console.WriteLine("파일 업로드 서버 시작...");
+                Console.WriteLine("파일 업로드 서버 시작... ");
 
-                while(true)
+                while (true)
                 {
                     TcpClient client = server.AcceptTcpClient();
                     Console.WriteLine("클라이언트 접속 : {0} ",
-                        ((IPEndPoint)client.Client.RemoteEndPoint).ToString());
+                       ((IPEndPoint)client.Client.RemoteEndPoint).ToString());
 
                     NetworkStream stream = client.GetStream();
 
@@ -58,7 +56,7 @@ namespace FileReceiver
                     BodyRequest reqBody = (BodyRequest)reqMsg.Body;
 
                     Console.WriteLine(
-                        "파일 업로드 요청이 왔습니다. 수락하시겠습니까? yes/no");
+                       "파일 업로드 요청이 왔습니다. 수락하시겠습니까? yes/no");
                     string answer = Console.ReadLine();
 
                     Message rspMsg = new Message();
@@ -98,11 +96,11 @@ namespace FileReceiver
                     long fileSize = reqBody.FILESIZE;
                     string fileName = Encoding.Default.GetString(reqBody.FILENAME);
                     FileStream file =
-                        new FileStream(dir + "\\" + fileName, FileMode.Create);
+                       new FileStream(dir + "\\" + fileName, FileMode.Create);
 
                     uint? dataMsgId = null;
                     ushort prevSeq = 0;
-                    while((reqMsg = MessageUtil.Receive(stream)) != null)
+                    while ((reqMsg = MessageUtil.Receive(stream)) != null)
                     {
                         Console.Write("#");
                         if (reqMsg.Header.MSGTYPE != CONSTANTS.FILE_SEND_DATA)
@@ -116,7 +114,7 @@ namespace FileReceiver
                                 break;
                         }
 
-                        if(prevSeq++ != reqMsg.Header.SEQ)
+                        if (prevSeq++ != reqMsg.Header.SEQ)
                         {
                             Console.WriteLine("{0}, {1}", prevSeq, reqMsg.Header.SEQ);
                             break;
@@ -124,8 +122,6 @@ namespace FileReceiver
 
                         file.Write(reqMsg.Body.GetBytes(), 0, reqMsg.Body.GetSize());
 
-                        if (reqMsg.Header.FRAGMENTED == CONSTANTS.NOT_FRAGMENTED)
-                            break;
                         if (reqMsg.Header.LASTMSG == CONSTANTS.LASTMSG)
                             break;
                     }

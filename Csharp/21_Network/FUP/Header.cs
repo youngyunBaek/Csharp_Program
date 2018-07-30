@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace FUP
-{    
+{
     public class Header : ISerializable
     {
         public uint MSGID { get; set; }
@@ -46,7 +46,7 @@ namespace FUP
 
         public int GetSize()
         {
-            return 0;
+            return 16;
         }
     }
 }

@@ -10,7 +10,7 @@
         public const byte NOT_FRAGMENTED = 0x00;
         public const byte FRAGMENTED = 0x01;
 
-        public const byte NOT_LASTMSG = 0x01;
+        public const byte NOT_LASTMSG = 0x00;
         public const byte LASTMSG = 0x01;
 
         public const byte ACCEPTED = 0x00;
@@ -29,7 +29,7 @@
     public class Message : ISerializable
     {
         public Header Header { get; set; }
-        public ISerializable Body {get; set;}
+        public ISerializable Body { get; set; }
 
         public byte[] GetBytes()
         {
