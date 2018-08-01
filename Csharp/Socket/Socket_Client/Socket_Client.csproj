@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DC7AEC4D-1BE5-4864-92EE-A6106F8D24DF}</ProjectGuid>
+    <ProjectGuid>{C2C2955D-F63E-4DC1-A863-DC5C9B0DA9F1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TCP_Server</RootNamespace>
-    <AssemblyName>TCP_Server</AssemblyName>
+    <RootNamespace>Socket_Client</RootNamespace>
+    <AssemblyName>Socket_Client</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainApp.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
