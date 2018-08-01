@@ -31,7 +31,7 @@ namespace Socket_Client
                 reqMsg.Body = new BodyRequest()
                 {
                     Device_Type = 0xD1,
-                    
+                    Device_Id = new byte[] { 0xD1, 0xD2, 0xD3, 0xD4 }
                 };
             }
         }
