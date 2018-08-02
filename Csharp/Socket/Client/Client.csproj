@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{499CACBC-99A6-4F77-9BAF-552B11892A4F}</ProjectGuid>
+    <ProjectGuid>{F4ADECFB-D93E-4BAF-BD76-4705EC3AAD39}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Socket_Server</RootNamespace>
-    <AssemblyName>Socket_Server</AssemblyName>
+    <RootNamespace>Client</RootNamespace>
+    <AssemblyName>Client</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lib">
-      <HintPath>..\Lib\bin\Debug\Lib.dll</HintPath>
+    <Reference Include="LIb">
+      <HintPath>..\LIb\bin\Debug\LIb.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

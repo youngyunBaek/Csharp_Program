@@ -4,9 +4,9 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using Lib;
+using LIb;
 
-namespace Socket_Server
+namespace Server
 {
     class MainApp
     {
@@ -17,33 +17,38 @@ namespace Socket_Server
             try
             {
                 IPEndPoint localAddress =
-                    new IPEndPoint(0, bindPort);
+                   new IPEndPoint(0, bindPort);
 
                 server = new TcpListener(localAddress);
                 server.Start();
 
-                Console.WriteLine("서버 시작.. ");
+                Console.WriteLine("파일 업로드 서버 시작... ");
 
-                while(true)
+                while (true)
                 {
                     TcpClient client = server.AcceptTcpClient();
-                    Console.WriteLine("클라이언트 접속: {0} ",
-                        ((IPEndPoint)client.Client.RemoteEndPoint).ToString());
+                    Console.WriteLine("클라이언트 접속 : {0} ",
+                       ((IPEndPoint)client.Client.RemoteEndPoint).ToString());
 
                     NetworkStream stream = client.GetStream();
 
                     Message reqMsg = MessageUtil.Receive(stream);
 
-                    if(reqMsg.Header.Packet_Type != CONSTANS.A)
-                    {
-                        stream.Close();
-                        client.Close();
-                        continue;
-                    }
+                    Console.WriteLine("id    : " + reqMsg.Header.id);
+                    Console.WriteLine("type  : " + reqMsg.Header.type);
+                    Console.WriteLine("size  : " + reqMsg.Header.size);
 
-                    Console.WriteLine("Packet Type      : ", reqMsg.Header.Packet_Type);
-                    Console.WriteLine("Current Sequence : ", reqMsg.Header.Current_Sequence);
-                    Console.WriteLine("Payload Size     : ", reqMsg.Header.Payload_size);                   
+                    Message rspMsg = new Message();
+                    rspMsg.Header = new Header()
+                    {
+                        type = 0x0A,
+                        id = 0x01,
+                        size = 1
+                    };
+
+                    MessageUtil.Send(stream, rspMsg);
+                    stream.Close();
+                    client.Close();
                 }
             }
             catch (SocketException e)
@@ -57,5 +62,5 @@ namespace Socket_Server
 
             Console.WriteLine("서버를 종료합니다.");
         }
-    }
+    }    
 }

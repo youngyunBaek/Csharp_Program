@@ -1,29 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Lib
+namespace LIb
 {
     public class Header : ISerializable
     {
-        public byte Packet_Type { get; set; }
-        public byte Current_Sequence { get; set; }
-        public ushort Payload_size { get; set; }
+        public byte type { get; set; }
+        public byte id { get; set; }
+        public ushort size { get; set; }
 
         public Header() { }
         public Header(byte[] bytes)
         {
-            Packet_Type = bytes[0];
-            Current_Sequence = bytes[1];
-            Payload_size = BitConverter.ToUInt16(bytes, 2);
+            type = bytes[0];
+            id = bytes[1];
+            size = BitConverter.ToUInt16(bytes, 2);
         }
 
         public byte[] GetBytes()
         {
-            byte[] bytes = new byte[4];
+            byte[] bytes = new byte[GetSize()];
 
-            bytes[0] = Packet_Type;
-            bytes[1] = Current_Sequence;
-
-            byte[] temp = BitConverter.GetBytes(Payload_size);
+            bytes[0] = type;
+            bytes[1] = id;
+            byte[] temp = BitConverter.GetBytes(size);
             Array.Copy(temp, 0, bytes, 2, temp.Length);
 
             return bytes;
