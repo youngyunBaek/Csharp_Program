@@ -25,11 +25,16 @@ namespace Client
                     clientAddress.ToString(), serverAddress.ToString());
 
                 Message reqMsg = new Message();
+                reqMsg.BodyReq = new BodyReq()
+                {
+                    type = 0x0C,
+                    id = 0
+                };
                 reqMsg.Header = new Header()
                 {
-                    type = 0x0B,
+                    type = 0x0A,
                     id = 0x02,
-                    size = 0
+                    size = 2
                 };
 
                 TcpClient client = new TcpClient(clientAddress);

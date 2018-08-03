@@ -38,12 +38,19 @@ namespace Server
                     Console.WriteLine("type  : " + reqMsg.Header.type);
                     Console.WriteLine("size  : " + reqMsg.Header.size);
 
+                    Console.WriteLine("type  : " + ((BodyReq)reqMsg.BodyReq).type);
+
                     Message rspMsg = new Message();
+                    rspMsg.BodyReq = new BodyReq()
+                    {
+                        type = 0x0D,
+                        id = 1
+                    };
                     rspMsg.Header = new Header()
                     {
                         type = 0x0A,
                         id = 0x01,
-                        size = 1
+                        size = 2
                     };
 
                     MessageUtil.Send(stream, rspMsg);
