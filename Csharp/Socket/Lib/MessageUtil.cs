@@ -52,13 +52,16 @@ namespace LIb
                 case 0x0A:
                     body = new BodyReq(bBuffer);
                     break;
+                case 0x0B:
+                    body = new BodyRes(bBuffer);
+                    break;
                 default:
                     throw new Exception(
                         String.Format(
                             "Unknown Type : {0}" + header.type));
             }
 
-            return new Message() { Header = header , BodyReq = body };
+            return new Message() { Header = header , Body = body };
         }
     }
 }

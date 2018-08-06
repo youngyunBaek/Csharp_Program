@@ -25,7 +25,7 @@ namespace Client
                     clientAddress.ToString(), serverAddress.ToString());
 
                 Message reqMsg = new Message();
-                reqMsg.BodyReq = new BodyReq()
+                reqMsg.Body = new BodyReq()
                 {
                     type = 0x0C,
                     id = 0,

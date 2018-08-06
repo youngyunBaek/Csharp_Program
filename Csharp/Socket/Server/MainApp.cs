@@ -44,14 +44,14 @@ namespace Server
                     hexOutput = String.Format("{0:X}", reqMsg.Header.size);
                     Console.WriteLine("size  0x{0} {1}", hexOutput, reqMsg.Header.size);
 
-                    hexOutput = String.Format("{0:X}", ((BodyReq)reqMsg.BodyReq).type);
-                    Console.WriteLine("type  0x{0} {1}", hexOutput, ((BodyReq)reqMsg.BodyReq).type);
+                    hexOutput = String.Format("{0:X}", ((BodyReq)reqMsg.Body).type);
+                    Console.WriteLine("type  0x{0} {1}", hexOutput, ((BodyReq)reqMsg.Body).type);
 
-                    hexOutput = String.Format("{0:X}", ((BodyReq)reqMsg.BodyReq).id);
-                    Console.WriteLine("type  0x{0} {1}", hexOutput, ((BodyReq)reqMsg.BodyReq).id);
+                    hexOutput = String.Format("{0:X}", ((BodyReq)reqMsg.Body).id);
+                    Console.WriteLine("type  0x{0} {1}", hexOutput, ((BodyReq)reqMsg.Body).id);
 
                     Message rspMsg = new Message();
-                    rspMsg.BodyReq = new BodyReq()
+                    rspMsg.Body = new BodyRes()
                     {
                         type = 0x0D,
                         id = 1,
@@ -59,7 +59,7 @@ namespace Server
                     };
                     rspMsg.Header = new Header()
                     {
-                        type = 0x0A,
+                        type = 0x0B,
                         id = 0x01,
                         size = 5
                     };
