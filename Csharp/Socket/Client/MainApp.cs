@@ -28,13 +28,14 @@ namespace Client
                 reqMsg.BodyReq = new BodyReq()
                 {
                     type = 0x0C,
-                    id = 0
+                    id = 0,
+                    data = new byte[] { 0x01, 0x02, 0x03 }
                 };
                 reqMsg.Header = new Header()
                 {
                     type = 0x0A,
                     id = 0x02,
-                    size = 2
+                    size = 5
                 };
 
                 TcpClient client = new TcpClient(clientAddress);
@@ -46,9 +47,16 @@ namespace Client
 
                 Message rspMsg = MessageUtil.Receive(stream);
 
-                Console.WriteLine("id    : " + rspMsg.Header.id);
-                Console.WriteLine("type  : " + rspMsg.Header.type);
-                Console.WriteLine("size  : " + rspMsg.Header.size);
+                Console.WriteLine("Receive Data");
+
+                string hexOutput = String.Format("{0:X}", rspMsg.Header.id);                
+                Console.WriteLine("id  0x{0} {1}", hexOutput, rspMsg.Header.id);
+
+                hexOutput = String.Format("{0:X}", rspMsg.Header.type);
+                Console.WriteLine("type  0x{0} {1}", hexOutput, rspMsg.Header.type);
+
+                hexOutput = String.Format("{0:X}", rspMsg.Header.size);
+                Console.WriteLine("size  0x{0} {1}", hexOutput, rspMsg.Header.size);
 
                 stream.Close();
                 client.Close();
@@ -59,8 +67,6 @@ namespace Client
             }
 
             Console.WriteLine("클라이언트를 종료합니다.");
-            while(true)
-            { }
         }
     }
 }

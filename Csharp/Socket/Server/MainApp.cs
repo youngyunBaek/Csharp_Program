@@ -32,26 +32,39 @@ namespace Server
 
                     NetworkStream stream = client.GetStream();
 
+                    Console.WriteLine("Receive Data");
                     Message reqMsg = MessageUtil.Receive(stream);
 
-                    Console.WriteLine("id    : " + reqMsg.Header.id);
-                    Console.WriteLine("type  : " + reqMsg.Header.type);
-                    Console.WriteLine("size  : " + reqMsg.Header.size);
+                    string hexOutput = String.Format("{0:X}", reqMsg.Header.id);
+                    Console.WriteLine("id  0x{0} {1}", hexOutput, reqMsg.Header.id);
 
-                    Console.WriteLine("type  : " + ((BodyReq)reqMsg.BodyReq).type);
+                    hexOutput = String.Format("{0:X}", reqMsg.Header.type);
+                    Console.WriteLine("type  0x{0} {1}", hexOutput, reqMsg.Header.type);
+
+                    hexOutput = String.Format("{0:X}", reqMsg.Header.size);
+                    Console.WriteLine("size  0x{0} {1}", hexOutput, reqMsg.Header.size);
+
+                    hexOutput = String.Format("{0:X}", ((BodyReq)reqMsg.BodyReq).type);
+                    Console.WriteLine("type  0x{0} {1}", hexOutput, ((BodyReq)reqMsg.BodyReq).type);
+
+                    hexOutput = String.Format("{0:X}", ((BodyReq)reqMsg.BodyReq).id);
+                    Console.WriteLine("type  0x{0} {1}", hexOutput, ((BodyReq)reqMsg.BodyReq).id);
 
                     Message rspMsg = new Message();
                     rspMsg.BodyReq = new BodyReq()
                     {
                         type = 0x0D,
-                        id = 1
+                        id = 1,
+                        data = new byte[] { 0x04, 0x05, 0x06 }
                     };
                     rspMsg.Header = new Header()
                     {
                         type = 0x0A,
                         id = 0x01,
-                        size = 2
+                        size = 5
                     };
+
+                    Console.WriteLine("Send Data");
 
                     MessageUtil.Send(stream, rspMsg);
                     stream.Close();
