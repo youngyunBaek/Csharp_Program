@@ -12,17 +12,20 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            string serverIp = "127.0.0.1";
-            const int serverPort = 5425;            
+            //string serverIp = "127.0.0.1";
+            //const int serverPort = 5425;            
+            IPEndPoint ipep, ipep2 = null;
+            UdpClient server, client = null;
 
             try
             {
-                IPEndPoint clientAddress = new IPEndPoint(0, 0);
-                IPEndPoint serverAddress =
-                    new IPEndPoint(IPAddress.Parse(serverIp), serverPort);
+                //IPEndPoint clientAddress = new IPEndPoint(0, 0);
+                //IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse(serverIp), serverPort);
 
-                Console.WriteLine("클라이언트: {0}, 서버:{1}",
-                    clientAddress.ToString(), serverAddress.ToString());
+                //Console.WriteLine("클라이언트: {0}, 서버:{1}",clientAddress.ToString(), serverAddress.ToString());
+                ipep = new IPEndPoint(IPAddress.Any, 5425);                
+                                
+                client = new UdpClient(5426);
 
                 Message reqMsg = new Message();
                 reqMsg.Body = new BodyReq()
@@ -38,27 +41,30 @@ namespace Client
                     size = 5
                 };
 
-                TcpClient client = new TcpClient(clientAddress);
-                client.Connect(serverAddress);
+                //TcpClient client = new TcpClient(clientAddress);
+                //client.Connect(serverAddress);
 
-                NetworkStream stream = client.GetStream();
+                //NetworkStream stream = client.GetStream();
 
-                MessageUtil.Send(stream, reqMsg);
+                //MessageUtil.Send(stream, reqMsg);
+                Console.WriteLine("Send Data");
+                client.Send(reqMsg.GetBytes(), reqMsg.GetSize(), "127.0.0.1", 5425);
 
-                Message rspMsg = MessageUtil.Receive(stream);
+                //Message rspMsg = MessageUtil.Receive(stream);
+
+                
+                byte[] data = client.Receive(ref ipep);
+                Stream stream = new MemoryStream(data);
 
                 Console.WriteLine("Receive Data");
+                string hexOutput = String.Format("{0:X}", reqMsg.Header.id);                
+                Console.WriteLine("id  0x{0} {1}", hexOutput, reqMsg.Header.id);
+                hexOutput = String.Format("{0:X}", reqMsg.Header.type);
+                Console.WriteLine("type  0x{0} {1}", hexOutput, reqMsg.Header.type);
+                hexOutput = String.Format("{0:X}", reqMsg.Header.size);
+                Console.WriteLine("size  0x{0} {1}", hexOutput, reqMsg.Header.size);
 
-                string hexOutput = String.Format("{0:X}", rspMsg.Header.id);                
-                Console.WriteLine("id  0x{0} {1}", hexOutput, rspMsg.Header.id);
-
-                hexOutput = String.Format("{0:X}", rspMsg.Header.type);
-                Console.WriteLine("type  0x{0} {1}", hexOutput, rspMsg.Header.type);
-
-                hexOutput = String.Format("{0:X}", rspMsg.Header.size);
-                Console.WriteLine("size  0x{0} {1}", hexOutput, rspMsg.Header.size);
-
-                stream.Close();
+                //stream.Close();
                 client.Close();
             }
             catch (SocketException e)
